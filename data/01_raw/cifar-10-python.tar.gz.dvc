@@ -1,0 +1,8 @@
+outs:
+- md5: c58f30108f718f92721af3b95e74349a
+  size: 170498071
+  path: cifar-10-python.tar.gz
+  cloud:
+    cifar10-s3:
+      etag: 1f81cc4f59a5b94c305ccc6235d3e4ac-4
+      version_id: 7YqFPkSRsmNB9517niCv4pnp10.nIGFj
