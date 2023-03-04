@@ -1,0 +1,5 @@
+[core]
+    remote = cifar10-s3
+['remote "cifar10-s3"']
+    url = s3://cifar10-project-dl
+    version_aware = true
