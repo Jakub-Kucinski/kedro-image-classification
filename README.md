@@ -17,3 +17,13 @@ poetry install
 ```shell
 poetry update
 ```
+
+# Pre-commit installation
+```shell
+pre-commit install
+pre-commit autoupdate
+```
+To check files you can run:
+```shell
+pre-commit run --all-files
+```
