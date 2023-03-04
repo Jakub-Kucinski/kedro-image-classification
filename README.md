@@ -27,3 +27,10 @@ To check files you can run:
 ```shell
 pre-commit run --all-files
 ```
+
+# Dataset preparation
+
+## AWS access configured
+```shell
+dvc pull
+```
