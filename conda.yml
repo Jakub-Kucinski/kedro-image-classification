@@ -1,0 +1,8 @@
+name: kedro_image_classification
+
+dependencies:
+- python=3.9
+- ipykernel
+- pip
+- pip:
+  - poetry
