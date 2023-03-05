@@ -1,7 +1,9 @@
-from kedro.pipeline import Pipeline, pipeline
+from kedro.pipeline import Pipeline, node, pipeline
 
-from .nodes import download_data_node
+from .nodes import data_download
 
 
 def create_pipeline(**kwargs) -> Pipeline:
-    return pipeline([download_data_node])
+    return pipeline(
+        [node(data_download, inputs="params:download_options", outputs=None)]
+    )

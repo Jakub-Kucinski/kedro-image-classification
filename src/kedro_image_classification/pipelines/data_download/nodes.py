@@ -1,6 +1,5 @@
 import os
 
-from kedro.pipeline import node
 from torchvision import datasets
 
 
@@ -19,7 +18,7 @@ def cloud_download(cloud):
         aws_download()
 
 
-def download_data(download_options):
+def data_download(download_options):
     supported_clouds = ["aws"]
     if download_options["source"] == "torchvision":
         torchvision_download()
@@ -31,6 +30,3 @@ def download_data(download_options):
                 f"Selected download from cloud, but provided cloud name is not "
                 f"supported.\nList of supported clouds: {supported_clouds}"
             )
-
-
-download_data_node = node(download_data, inputs="params:download_options", outputs=None)
