@@ -1,0 +1,3 @@
+download_options:
+  torchvision_download: True
+  cloud: None

@@ -1,7 +1,7 @@
 [tool.kedro]
 package_name = "kedro_image_classification"
 project_name = "kedro-image-classification"
-project_version = "0.1.0"
+kedro_init_version = "0.18.5"
 
 [tool.isort]
 profile = "black"
@@ -39,6 +39,7 @@ black = "^23.1.0"
 isort = "^5.12.0"
 pre-commit = "^3.1.1"
 torchvision = "^0.14.1"
+fsspec = ">=2021.4,<2023.1.1"
 
 [build-system]
 requires = ["poetry-core"]
