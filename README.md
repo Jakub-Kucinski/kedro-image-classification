@@ -33,9 +33,10 @@ pre-commit run --all-files
 ```shell
 export AWS_SHARED_CREDENTIALS_FILE="$(pwd)/conf/local/aws/credentials"
 export AWS_CONFIG_FILE="$(pwd)/conf/base/aws/config"
-export AWS_PROFILE={profile_name}
-aws configure set aws_access_key_id {aws_access_key_id} --profile {profile_name}
-aws configure set aws_secret_access_key {aws_secret_access_key} --profile {profile_name}
+export LOCAL_PROFILE_NAME={profile_name}
+export AWS_PROFILE=$LOCAL_PROFILE_NAME
+aws configure set aws_access_key_id {aws_access_key_id} --profile $LOCAL_PROFILE_NAME
+aws configure set aws_secret_access_key {aws_secret_access_key} --profile $LOCAL_PROFILE_NAME
 ```
 
 # Dataset preparation
