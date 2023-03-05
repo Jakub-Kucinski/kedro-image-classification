@@ -1,3 +1,2 @@
 download_options:
-  torchvision_download: True
-  cloud: None
+  source: torchvision

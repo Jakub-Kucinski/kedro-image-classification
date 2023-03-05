@@ -21,11 +21,11 @@ def cloud_download(cloud):
 
 def download_data(download_options):
     supported_clouds = ["aws"]
-    if download_options["torchvision_download"]:
+    if download_options["source"] == "torchvision":
         torchvision_download()
     else:
-        if download_options["cloud"] in supported_clouds:
-            cloud_download(download_options["cloud"])
+        if download_options["source"] in supported_clouds:
+            cloud_download(download_options["source"])
         else:
             raise Exception(
                 f"Selected download from cloud, but provided cloud name is not "

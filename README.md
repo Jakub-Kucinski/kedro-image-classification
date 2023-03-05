@@ -39,9 +39,14 @@ aws configure set aws_access_key_id {aws_access_key_id} --profile $LOCAL_PROFILE
 aws configure set aws_secret_access_key {aws_secret_access_key} --profile $LOCAL_PROFILE_NAME
 ```
 
-# Dataset preparation
+# Dataset download
 
-## AWS access configured
 ```shell
-dvc pull
+# from torchvision
+kedro run --pipeline data_download
+```
+
+```shell
+# from AWS S3 bucket
+kedro run --pipeline data_download --params=download_options.source:aws
 ```
