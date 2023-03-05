@@ -1,3 +1,5 @@
+import os
+
 from kedro.pipeline import node
 from torchvision import datasets
 
@@ -7,7 +9,9 @@ def torchvision_download():
 
 
 def aws_download():
-    pass
+    os.system("dvc pull")
+    os.system("tar -xf data/01_raw/cifar-10-python.tar.gz -C data/01_raw/")
+    os.system("rm data/01_raw/cifar-10-python.tar.gz")
 
 
 def cloud_download(cloud):
