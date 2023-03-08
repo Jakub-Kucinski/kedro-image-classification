@@ -4,6 +4,7 @@ from kedro_image_classification.pipelines.data_processing.nodes import load_data
 
 
 def test_dataset_loading():
+    """Test checking load_dataset method."""
     cfg = {
         "train_loader": {"batch_size": 4, "shuffle": True, "num_workers": 4},
         "test_loader": {"batch_size": 4, "shuffle": False, "num_workers": 4},

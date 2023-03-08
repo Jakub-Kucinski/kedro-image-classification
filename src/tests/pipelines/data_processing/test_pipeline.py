@@ -6,6 +6,7 @@ from kedro_image_classification.pipelines.data_processing.pipeline import (
 
 
 def test_pipeline_creation():
+    """Test checking data_processing pipeline creation."""
     pipeline = create_pipeline()
 
     assert type(pipeline) == Pipeline
