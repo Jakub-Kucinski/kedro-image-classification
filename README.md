@@ -8,7 +8,7 @@
    1. [Dataset download](#dataset-download)
    2. [Dataset processing](#dataset-processing)
 
-# CIFAR-10 
+# CIFAR-10
 
 Team members: Jakub Kuciński, Karol Kuczmarz, Aleksander Szymański
 
@@ -59,7 +59,7 @@ aws configure set aws_secret_access_key {aws_secret_access_key} --profile $LOCAL
 [CIFAR-10 dataset](https://www.cs.toronto.edu/~kriz/cifar.html) can be downloaded manually or with usage of `data_download` pipeline from torchvision or AWS S3 bucket. You can change the source by modifying [data_download.yml](conf/base/parameters/data_download.yml). Possible options are `torchvision` and `aws`. Then run:
 ```shell
 # from torchvision
-kedro run --pipeline data_download 
+kedro run --pipeline data_download
 ```
 
 Alternatively you can specify parameters with bash command:
