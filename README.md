@@ -56,26 +56,25 @@ aws configure set aws_secret_access_key {aws_secret_access_key} --profile $LOCAL
 
 ## Dataset download
 
-[CIFAR-10 dataset](https://www.cs.toronto.edu/~kriz/cifar.html) can be downloaded manually or with usage of `data_download` pipeline from torchvision or AWS S3 bucket. You can change the source by modifying [data_download.yml](conf/base/parameters/data_download.yml). Possible options are `torchvision` and `aws`. Then run:
+[CIFAR-10 dataset](https://www.cs.toronto.edu/~kriz/cifar.html) can be downloaded manually or with usage of `data_download` pipeline from torchvision or AWS S3 bucket. You can change the source of the data by changing `CIFAR10: save_args: source:` option in [catalog.yml](conf/base/catalog.yml). Possible options are `torchvision` and `aws`. Then run:
 ```shell
 # from torchvision
 kedro run --pipeline data_download
 ```
 
-Alternatively you can specify parameters with bash command:
+Alternatively you can run one of the two predefined download configurations:
 ```shell
 # from torchvision
-kedro run --pipeline data_download --params=download_options.source:torchvision
+kedro run --pipeline data_download --env=download_confs/torchvision_download
 ```
-
 ```shell
 # from AWS S3 bucket (require previous AWS access configuration)
-kedro run --pipeline data_download --params=download_options.source:aws
+kedro run --pipeline data_download --env=download_confs/aws_download
 ```
 
 ## Dataset processing
 
-`data_processing` pipeline requires that the data has already been downloaded (check [Dataset download](#dataset-download)). It creates `train_loader, test_loader` based on the [data_processing.yml](conf/base/parameters/data_processing.yml) config file.
+`data_processing` pipeline requires that the data has already been downloaded (check [Dataset download](#dataset-download) section). It creates `train_loader, test_loader` based on the [data_processing.yml](conf/base/parameters/data_processing.yml) config file.
 
 ```shell
 kedro run --pipeline data_processing
