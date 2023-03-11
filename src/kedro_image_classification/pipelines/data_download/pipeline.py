@@ -1,9 +1,7 @@
 from kedro.pipeline import Pipeline, node, pipeline
 
-from .nodes import data_download
+from .nodes import dummy_download
 
 
 def create_pipeline(**kwargs) -> Pipeline:
-    return pipeline(
-        [node(data_download, inputs="params:download_options", outputs=None)]
-    )
+    return pipeline([node(dummy_download, inputs=None, outputs="CIFAR10")])

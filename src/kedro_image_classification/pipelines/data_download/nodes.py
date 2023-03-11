@@ -30,3 +30,8 @@ def data_download(download_options):
                 f"Selected download from cloud, but provided cloud name is not "
                 f"supported.\nList of supported clouds: {supported_clouds}"
             )
+
+
+def dummy_download():
+    data = {}
+    return data
