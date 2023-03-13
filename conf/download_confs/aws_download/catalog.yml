@@ -2,4 +2,4 @@ CIFAR10:
   type: kedro_image_classification.extras.datasets.torchvision_datasets.TorchvisionCIFAR10
   path: data/01_raw/cifar-10-batches-py
   save_args:
-    source: torchvision
+    source: aws

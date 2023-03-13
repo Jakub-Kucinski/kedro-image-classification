@@ -1,0 +1,18 @@
+## 08.03.2023 - Data collection + preparation
+- data_download: implemented tests for the pipeline and nodes
+- data_processing: changed tests structure to fit the kedro style
+- Refactored README.md and added Dataset processing section
+- Add custom TorchvisionCIFAR10 dataset and data_processing pipeline
+- Refactored data_dwonload params
+- Add aws_download method in pipeline
+- Modify aws setup manual
+- Fix unwanted changes
+- Add torchvision cifar10 download
+- Fix manual for aws setup in README
+- Add aws local setup instruction
+- Updated README
+- Update gitignore
+- Add torchvision and config for dvc
+- Add dvc file with dataset
+- Initialize DVC
+- Add pre-commit

@@ -4,6 +4,9 @@
 # ignore all local configuration
 conf/local/**
 !conf/local/.gitkeep
+!conf/local/aws
+!conf/local/aws/.gitkeep
+conf/local/aws/**
 
 # ignore potentially sensitive credentials files
 conf/**/*credentials*
@@ -20,7 +23,7 @@ logs/**
 !.gitkeep
 
 # keep also the example dataset
-#!data/01_raw/*
+!data/01_raw/*
 
 
 ##########################
