@@ -3,3 +3,8 @@ CIFAR10:
   path: data/01_raw/cifar-10-batches-py
   save_args:
     source: torchvision
+
+CIFAR10Model:
+  type: kedro_image_classification.extras.models.pytorch_lightning.LightningCIFAR10
+  path: data/06_models/cifar10_model.ckpt
+  versioned: True

@@ -2,14 +2,15 @@ import torch
 
 
 def load_dataset(loaders_config, cifar_dataset):
+    train_data, test_data = cifar_dataset
     train_loader = torch.utils.data.DataLoader(
-        cifar_dataset,
+        train_data,
         batch_size=loaders_config["train_loader"]["batch_size"],
         shuffle=loaders_config["train_loader"]["shuffle"],
         num_workers=loaders_config["train_loader"]["num_workers"],
     )
     test_loader = torch.utils.data.DataLoader(
-        cifar_dataset,
+        test_data,
         batch_size=loaders_config["test_loader"]["batch_size"],
         shuffle=loaders_config["test_loader"]["shuffle"],
         num_workers=loaders_config["test_loader"]["num_workers"],
