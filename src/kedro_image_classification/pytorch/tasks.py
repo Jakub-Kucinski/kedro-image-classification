@@ -43,12 +43,5 @@ class ClassificationTask(pl.LightningModule):
         return y_hat
 
     def configure_optimizers(self):
-        if self.optimizer_params["type"].lower() == "adam":
-            return torch.optim.Adam(
-                self.model.parameters(), **self.optimizer_params["parameters"]
-            )
-        if self.optimizer_params["type"].lower() == "sgd":
-            return torch.optim.SGD(
-                self.model.parameters(), **self.optimizer_params["parameters"]
-            )
-        return torch.optim.Adam(self.model.parameters(), lr=0.02)
+        optimizer = getattr(torch.optim, self.optimizer_params["type"])
+        return optimizer(self.model.parameters(), **self.optimizer_params["parameters"])

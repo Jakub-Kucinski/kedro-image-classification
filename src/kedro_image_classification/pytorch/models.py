@@ -25,9 +25,35 @@ class SimpleConvNet(nn.Module):
 
 
 class CustomConvModel(nn.Module):
-    def __init__(self, model_params):
+    def __init__(self, model_config):
         super().__init__()
-        raise NotImplementedError()
+        self.model_params = model_config["model_params"]
+        layers = self.model_params["layers"]
+
+        activations = layers["activations"]
+        features_layers = []
+        for layer_name in layers["features_flow"]:
+            layer_type = layer_name.split("_")[0]
+            layer = getattr(nn, layer_type)
+            if layer_name in activations:
+                features_layers.append(layer(**activations[layer_name]))
+            else:
+                features_layers.append(layer(**layers["features"][layer_name]))
+
+        classifier_layers = []
+        for layer_name in layers["classifier_flow"]:
+            layer_type = layer_name.split("_")[0]
+            layer = getattr(nn, layer_type)
+            if layer_name in activations:
+                classifier_layers.append(layer(**activations[layer_name]))
+            else:
+                classifier_layers.append(layer(**layers["classifier"][layer_name]))
+
+        self.features = nn.Sequential(*features_layers)
+        self.classifier = nn.Sequential(*classifier_layers)
 
     def forward(self, x):
-        raise NotImplementedError()
+        x = self.features(x)
+        x = torch.flatten(x, 1)
+        x = self.classifier(x)
+        return x
