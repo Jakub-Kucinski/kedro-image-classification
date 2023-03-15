@@ -1,3 +1,16 @@
+## 15.03.2023 - Model training
+- data_download: added documentation to some methods
+- model_training: added directory with different training configuration
+- data_download: update test to the current pipeline architecture
+- Add custom model confs
+- Add CustomConvModel torch model and updated model_training pipeline
+- Add model_training pipeline and custom LightningCIFAR10 kedro dataset
+- Add custom pytorch and pytorchlightning models, model.yml and model_training.yml confs
+- Add check-toml to pre-commit
+- Add custom envs for torchvision and aws data_download, updated README
+- Moved data downloading logic from data_download nodes into TorchvisionCIFAR10 _save method, updated data_download.yml and catalog.yml
+- Updated pre-commit
+
 ## 08.03.2023 - Data collection + preparation
 - data_download: implemented tests for the pipeline and nodes
 - data_processing: changed tests structure to fit the kedro style
