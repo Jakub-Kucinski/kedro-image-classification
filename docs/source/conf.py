@@ -21,6 +21,7 @@
 import re
 
 from kedro.framework.cli.utils import find_stylesheets
+
 from kedro_image_classification import __version__ as release
 
 # -- Project information -----------------------------------------------------
