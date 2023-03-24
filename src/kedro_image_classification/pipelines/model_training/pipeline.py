@@ -4,6 +4,12 @@ from .nodes import create_model, create_task, create_trainer, train
 
 
 def create_pipeline(**kwargs) -> Pipeline:
+    """Function creating Model Training pipeline performing model, trainer
+    and optimizer creation and training the model.
+
+    Returns:
+        Pipeline: Created Model Training pipeline.
+    """
     return pipeline(
         [
             node(create_trainer, inputs="params:trainer_params", outputs="trainer"),
