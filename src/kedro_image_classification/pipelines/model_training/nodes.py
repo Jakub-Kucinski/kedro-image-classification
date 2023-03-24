@@ -1,21 +1,38 @@
+from inspect import getmembers, isclass
+
+import torch
 from pytorch_lightning import Trainer
 
 import kedro_image_classification.pytorch.models as models
 from kedro_image_classification.pytorch.tasks import ClassificationTask
 
 
-def create_model(model_config):
+def create_model(model_architectures: dict, model_selection: dict) -> torch.nn.Module:
     try:
-        model = getattr(models, model_config["model_type"])
-        return model(model_config)
+        model_config = model_architectures[model_selection["model_name"]]
+    except KeyError:
+        predefined_model_names = list(model_architectures.keys())
+        raise KeyError(
+            f"Selected non existing model name: '{model_selection['model_name']}'. "
+            f"Predefined model names are: {predefined_model_names}."
+            f"You can add your own custom model by adding its configuration"
+            f"to the model_architectures.yml file."
+        )
+
+    try:
+        model_constructor = getattr(models, model_config["model_type"])
     except AttributeError:
-        predefined_model_types = ["SimpleConvNet", "CustomConvModel"]
+        predefined_model_types = [
+            name for name, obj in getmembers(models) if isclass(obj)
+        ]
         raise AttributeError(
             f"Specified unsupported model type. "
             f"Predefined model types are: {predefined_model_types}. "
             f"You can add your own custom pytorch model by adding its code to the "
             f"kedro_image_classification.pytorch.models"
         )
+
+    return model_constructor(model_config)
 
 
 def create_trainer(trainer_params):

@@ -7,7 +7,14 @@ def create_pipeline(**kwargs) -> Pipeline:
     return pipeline(
         [
             node(create_trainer, inputs="params:trainer_params", outputs="trainer"),
-            node(create_model, inputs="params:model", outputs="model"),
+            node(
+                create_model,
+                inputs={
+                    "model_architectures": "params:model_architectures",
+                    "model_selection": "params:model_selection",
+                },
+                outputs="model",
+            ),
             node(
                 create_task,
                 inputs=["model", "params:optimizer_params"],
