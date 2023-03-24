@@ -4,4 +4,6 @@ from .nodes import dummy_download
 
 
 def create_pipeline(**kwargs) -> Pipeline:
-    return pipeline([node(dummy_download, inputs=None, outputs="CIFAR10")])
+    return pipeline(
+        [node(dummy_download, inputs=None, outputs="CIFAR10", name="dummy_download")]
+    )

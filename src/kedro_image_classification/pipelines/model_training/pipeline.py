@@ -14,11 +14,13 @@ def create_pipeline(**kwargs) -> Pipeline:
                     "model_selection": "params:model_selection",
                 },
                 outputs="model",
+                name="create_model",
             ),
             node(
                 create_task,
                 inputs=["model", "params:optimizer_params"],
                 outputs="classification_task",
+                name="create_task",
             ),
             node(
                 train,
@@ -29,6 +31,7 @@ def create_pipeline(**kwargs) -> Pipeline:
                     "test_loader",
                 ],
                 outputs="CIFAR10Model",
+                name="train",
             ),
         ]
     )

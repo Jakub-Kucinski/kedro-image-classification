@@ -10,6 +10,7 @@ def create_pipeline(**kwargs) -> Pipeline:
                 load_dataset,
                 inputs=["params:loaders", "CIFAR10"],
                 outputs=["train_loader", "test_loader"],
+                name="load_dataset",
             )
         ]
     )
