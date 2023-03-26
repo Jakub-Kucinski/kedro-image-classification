@@ -7,6 +7,7 @@
 6. [Pipelines](#pipelines)
    1. [Dataset download](#dataset-download)
    2. [Dataset processing](#dataset-processing)
+   3. [Model training](#model-training)
 
 # CIFAR-10
 
@@ -78,4 +79,10 @@ kedro run --pipeline data_download --env=download_confs/aws_download
 
 ```shell
 kedro run --pipeline data_processing
+```
+
+## Model training
+
+```shell
+kedro run --pipeline model_training
 ```
