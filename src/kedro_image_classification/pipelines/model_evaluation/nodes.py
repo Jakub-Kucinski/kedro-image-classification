@@ -72,6 +72,7 @@ def get_metric_value(
     num_classes: int = 10,
     average: Optional[Literal["micro", "macro", "weighted", "none"]] = "macro",
 ):
+    """Function calculating value of given metric."""
     metric_constructor = getattr(torchmetrics, metric_name)
     metric = metric_constructor(
         task="multiclass", num_classes=num_classes, average=average
@@ -80,23 +81,30 @@ def get_metric_value(
 
 
 def calc_metrics(prediction: Tensor, target: Tensor, evaluation_metrics: dict) -> dict:
-    simple_metrics = ["Precision", "Recall", "AveragePrecision", "Accuracy", "AUROC"]
+    """
+    Args:
+        prediction (Tensor): Tensor with model predictions.
+        target (Tensor): Tensor with target values.
+        evaluation_metrics (dict): Dictionary with configuration of evaluation metrics.
+    """
     results = dict()
     for metric_name, parameters in evaluation_metrics.items():
-        if metric_name in simple_metrics:
+        if metric_name in ["Precision", "Recall", "AveragePrecision", "Accuracy", "AUROC"]:
             value = get_metric_value(prediction, target, metric_name, **parameters)
             results[metric_name] = value
-        if metric_name == "ConfusionMatrix":
+        elif metric_name == "ConfusionMatrix":
             value = get_confusion_matrix(prediction, target, **parameters)
             results[metric_name] = value
-        if metric_name == "ROC":
+        elif metric_name == "ROC":
             # TODO
             # https://torchmetrics.readthedocs.io/en/stable/classification/roc.html
             raise NotImplementedError()
-        if metric_name == "PrecisionRecallCurve":
+        elif metric_name == "PrecisionRecallCurve":
             # TODO
             # https://torchmetrics.readthedocs.io/en/stable/classification/precision_recall_curve.html
             raise NotImplementedError()
+        else:
+            raise ValueError(f"Metric {metric_name} not supported.")
     # for k, v in results.items():
     #     print(k, v)
     return results
