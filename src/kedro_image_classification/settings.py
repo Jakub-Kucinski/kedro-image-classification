@@ -22,7 +22,7 @@ https://kedro.readthedocs.io/en/stable/kedro_project_setup/settings.html."""
 # CONTEXT_CLASS = KedroContext
 
 # Directory that holds configuration.
-# CONF_SOURCE = "conf"
+CONF_SOURCE = "conf"
 
 # Class that manages how configuration is loaded.
 # from kedro.config import TemplatedConfigLoader
