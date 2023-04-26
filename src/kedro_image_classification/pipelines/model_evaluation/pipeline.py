@@ -4,6 +4,12 @@ from .nodes import calc_metrics, load_testset, make_predictions
 
 
 def create_pipeline(**kwargs) -> Pipeline:
+    """Function creating Model Evaluation pipeline creating test_loader,
+    making predictions on testset and calculating metrics.
+
+    Returns:
+        Pipeline: Created Model Evaluation pipeline.
+    """
     return pipeline(
         [
             node(

@@ -39,6 +39,15 @@ def load_testset(
 def make_predictions(
     task: ClassificationTask, test_loader: DataLoader
 ) -> Tuple[Tensor, Tensor]:
+    """Function making predictions on test set.
+
+    Args:
+        task (ClassificationTask): Classification task object.
+        test_loader (DataLoader): Test set data loader.
+
+    Returns:
+        Tuple[Tensor, Tensor]: Tuple with predictions and targets.
+    """
     target = []
     prediction = []
     task.model.eval()
@@ -59,6 +68,15 @@ def get_confusion_matrix(
     num_classes: int = 10,
     normalize: Optional[Literal["none", "true", "pred", "all"]] = None,
 ) -> Tensor:
+    """Function calculating confusion matrix.
+
+    Args:
+        prediction (Tensor): Tensor with predictions.
+        target (Tensor): Tensor with targets.
+        num_classes (int, optional): Number of classes. Defaults to 10.
+        normalize (Optional[Literal["none", "true", "pred", "all"]], optional):
+        Normalization mode. Defaults to None.
+    """
     confusion_matrix = ConfusionMatrix(
         task="multiclass", num_classes=num_classes, normalize=normalize
     )
@@ -72,6 +90,16 @@ def get_metric_value(
     num_classes: int = 10,
     average: Optional[Literal["micro", "macro", "weighted", "none"]] = "macro",
 ):
+    """Function calculating value of selected metric.
+
+    Args:
+        prediction (Tensor): Tensor with predictions.
+        target (Tensor): Tensor with targets.
+        metric_name (str): Name of metric.
+        num_classes (int, optional): Number of classes. Defaults to 10.
+        average (Optional[Literal["micro", "macro", "weighted", "none"]], optional):
+        Average mode. Defaults to "macro".
+    """
     metric_constructor = getattr(torchmetrics, metric_name)
     metric = metric_constructor(
         task="multiclass", num_classes=num_classes, average=average
@@ -80,10 +108,25 @@ def get_metric_value(
 
 
 def calc_metrics(prediction: Tensor, target: Tensor, evaluation_metrics: dict) -> dict:
-    simple_metrics = ["Precision", "Recall", "AveragePrecision", "Accuracy", "AUROC"]
+    """Function calculating metrics.
+
+    Args:
+        prediction (Tensor): Tensor with predictions.
+        target (Tensor): Tensor with targets.
+        evaluation_metrics (dict): Dictionary with evaluation metrics configuration.
+
+    Returns:
+        dict: Dictionary with calculated metrics.
+    """
     results = dict()
     for metric_name, parameters in evaluation_metrics.items():
-        if metric_name in simple_metrics:
+        if metric_name in [
+            "Precision",
+            "Recall",
+            "AveragePrecision",
+            "Accuracy",
+            "AUROC",
+        ]:
             value = get_metric_value(prediction, target, metric_name, **parameters)
             results[metric_name] = value
         if metric_name == "ConfusionMatrix":
@@ -97,6 +140,4 @@ def calc_metrics(prediction: Tensor, target: Tensor, evaluation_metrics: dict) -
             # TODO
             # https://torchmetrics.readthedocs.io/en/stable/classification/precision_recall_curve.html
             raise NotImplementedError()
-    # for k, v in results.items():
-    #     print(k, v)
     return results
