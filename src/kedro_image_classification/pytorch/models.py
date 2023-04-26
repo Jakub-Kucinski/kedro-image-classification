@@ -4,6 +4,12 @@ import torch.nn.functional as F
 
 
 class SimpleConvNet(nn.Module):
+    """Simple ConvNet with 2 convolutional layers and 3 fully connected layers.
+
+    Args:
+        model_params (dict): Dictionary with model parameters.
+    """
+
     def __init__(self, model_params):
         super().__init__()
         self.model_params = model_params
@@ -25,6 +31,12 @@ class SimpleConvNet(nn.Module):
 
 
 class CustomConvModel(nn.Module):
+    """Custom ConvNet that can be configured with a dictionary.
+
+    Args:
+        model_config (dict): Dictionary with model parameters.
+    """
+
     def __init__(self, model_config):
         super().__init__()
         self.model_params = model_config["model_params"]

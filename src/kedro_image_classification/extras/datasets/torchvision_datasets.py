@@ -8,6 +8,9 @@ from torchvision import datasets, transforms
 
 
 class TorchvisionCIFAR10(AbstractDataSet):
+    """``TorchvisionCIFAR10`` class for loading and saving CIFAR10 dataset
+    in Kedro data catalog."""
+
     def __init__(self, path, save_args):
         protocol, path = get_protocol_and_path(path)
         self._protocol = protocol
