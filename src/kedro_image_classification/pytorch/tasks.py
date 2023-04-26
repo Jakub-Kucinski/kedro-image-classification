@@ -5,6 +5,13 @@ from torchmetrics.functional.classification import multiclass_accuracy
 
 
 class ClassificationTask(pl.LightningModule):
+    """PyTorch Lightning task for image classification.
+
+    Args:
+        model: PyTorch model.
+        optimizer_params: Dictionary with optimizer parameters.
+    """
+
     def __init__(self, model, optimizer_params):
         super().__init__()
         self.save_hyperparameters()
