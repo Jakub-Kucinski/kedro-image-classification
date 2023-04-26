@@ -51,8 +51,7 @@ class TorchvisionCIFAR10(AbstractDataSet):
         files = os.listdir(save_path)
         if "cifar-10-batches-py" in files:
             print("Files already downloaded")
-            return
-        if self.download_source == "torchvision":
+        elif self.download_source == "torchvision":
             torchvision_download(save_path)
         else:
             if self.download_source in self.supported_clouds:

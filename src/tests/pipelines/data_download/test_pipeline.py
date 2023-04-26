@@ -9,5 +9,5 @@ def test_pipeline_creation():
 
     assert type(pipeline) == Pipeline
     assert len(pipeline.nodes) > 0
-    assert pipeline.all_outputs() == set()
-    assert len(pipeline.all_inputs()) == 1
+    assert pipeline.all_outputs() == {"CIFAR10"}
+    assert len(pipeline.all_inputs()) == 0

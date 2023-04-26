@@ -25,6 +25,7 @@ logs/**
 # keep also the example dataset
 !data/01_raw/*
 
+!data/06_models/cifar10_model.ckpt/trained_base/*.dvc
 
 ##########################
 # Common files
