@@ -8,6 +8,9 @@ from kedro_image_classification.pytorch.tasks import ClassificationTask
 
 
 class LightningCIFAR10(AbstractVersionedDataSet):
+    """``LightningCIFAR10`` class for loading and saving PyTorch Lightning models
+    in Kedro data catalog."""
+
     def __init__(self, path, version=None):
         protocol, path = get_protocol_and_path(path, version)
         self._protocol = protocol
@@ -27,7 +30,6 @@ class LightningCIFAR10(AbstractVersionedDataSet):
 
     def _load(self):
         load_path = get_filepath_str(self._get_load_path(), self._protocol)
-        print(load_path)
         return ClassificationTask.load_from_checkpoint(load_path)
 
     def _save(self, lightning_module):

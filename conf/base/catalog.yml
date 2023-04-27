@@ -8,3 +8,14 @@ CIFAR10Model:
   type: kedro_image_classification.extras.models.pytorch_lightning.LightningCIFAR10
   path: data/06_models/cifar10_model.ckpt
   versioned: True
+
+Test_prediction:
+  type: pickle.PickleDataSet
+  filepath: data/07_model_output/prediction.pkl
+  backend: pickle
+  versioned: True
+
+Test_labels:
+  type: pickle.PickleDataSet
+  filepath: data/07_model_output/target.pkl
+  backend: pickle

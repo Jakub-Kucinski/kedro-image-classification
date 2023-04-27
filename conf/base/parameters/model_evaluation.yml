@@ -1,0 +1,15 @@
+evaluation_metrics:
+  Precision:
+    average: macro
+  Recall:
+    average: macro
+  AveragePrecision:
+    average: macro
+  Accuracy:
+    average: macro
+  ConfusionMatrix:
+    normalize: none
+  AUROC:
+    average: macro
+#  ROC: ""
+#  PrecisionRecallCurve: ""

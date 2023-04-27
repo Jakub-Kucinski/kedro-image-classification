@@ -11,7 +11,7 @@ from kedro_image_classification.pytorch.tasks import ClassificationTask
 def create_model(model_architectures: dict, model_selection: dict) -> torch.nn.Module:
     """Function creating model from predefined architectures
     and types based on the selection. Checks whether the selected model
-    is in the prefdefined model architectures and if the model type is defined.
+    is in the predefined model architectures and if the model type is defined.
 
     Args:
         model_architectures (dict): Dictionary with all defined model architectures.
@@ -98,14 +98,14 @@ def train(
     """Function performing training of the model.
 
     Args:
-        trainer (Trainer): PyTorch Lightninf trainer which will perform
+        trainer (Trainer): PyTorch Lightning trainer which will perform
         the task of training.
         task (ClassificationTask): The model to train wrapped in Classification task.
         train_loader (DataLoader): Loader of the train set.
         test_loader (DataLoader): Loader of the test set.
 
     Returns:
-        Trainer: Given trainer after the training proces
+        Trainer: Given trainer after the training process
     """
     trainer.fit(task, train_loader, test_loader)
     return trainer
