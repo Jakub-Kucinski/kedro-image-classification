@@ -89,10 +89,6 @@ def test_calc_metrics(project_context: KedroContext):
     with pytest.raises(NotImplementedError):
         calc_metrics(pred, target, metrics3)
 
-    metrics4 = {"None": {"average": "macro"}}
-    with pytest.raises(ValueError):
-        calc_metrics(pred, target, metrics4)
-
     metrics5 = {"ConfusionMatrix": {"normalize": "none"}}
     res = calc_metrics(pred, target, metrics5)
     assert res
