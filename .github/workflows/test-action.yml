@@ -17,7 +17,7 @@ jobs:
 
       - name: Install DVC
         run: |
-          pip install dvc
+          pip install dvc dvc-s3
 
       - name: Download from S3
         env:
