@@ -13,11 +13,12 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10'
+          python-version: '3.9'
 
-      - name: Install DVC
+      - name: Install dependencies
         run: |
-          pip install dvc dvc-s3
+          python -m pip install --upgrade pip poetry
+          poetry install
 
       - name: Download from S3
         env:
@@ -26,3 +27,5 @@ jobs:
         run: |
           dvc pull data/01_raw/cifar-10-python.tar.gz
           dvc pull data/06_models/cifar10_model.ckpt/trained_base/cifar10_model.ckpt
+
+      -
