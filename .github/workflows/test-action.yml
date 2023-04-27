@@ -27,5 +27,3 @@ jobs:
         run: |
           dvc pull data/01_raw/cifar-10-python.tar.gz
           dvc pull data/06_models/cifar10_model.ckpt/trained_base/cifar10_model.ckpt
-
-      -
