@@ -140,4 +140,6 @@ def calc_metrics(prediction: Tensor, target: Tensor, evaluation_metrics: dict) -
             # TODO
             # https://torchmetrics.readthedocs.io/en/stable/classification/precision_recall_curve.html
             raise NotImplementedError()
+    with open("data/08_reporting/metrics.txt", "w") as f:
+        f.write(str(results))
     return results

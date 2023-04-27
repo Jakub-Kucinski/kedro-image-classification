@@ -1,13 +1,15 @@
 # Table of contents
-1. [CIFAR-10 ](#cifar-10)
-2. [Installation](#installation)
-3. [Dependencies update](#dependencies-update)
-4. [Pre-commit installation](#pre-commit-installation)
-5. [AWS access configuration](#aws-access-configuration)
-6. [Pipelines](#pipelines)
-   1. [Dataset download](#dataset-download)
-   2. [Dataset processing](#dataset-processing)
-   3. [Model training](#model-training)
+- [Table of contents](#table-of-contents)
+- [CIFAR-10](#cifar-10)
+- [Installation](#installation)
+- [Dependencies update](#dependencies-update)
+- [Pre-commit installation](#pre-commit-installation)
+- [AWS access configuration](#aws-access-configuration)
+- [Pipelines](#pipelines)
+  - [Dataset download](#dataset-download)
+  - [Dataset processing](#dataset-processing)
+  - [Model training](#model-training)
+  - [Model evaluation](#model-evaluation)
 
 # CIFAR-10
 
@@ -82,7 +84,30 @@ kedro run --pipeline data_processing
 ```
 
 ## Model training
+`model_training` pipeline creates model based on specified configuration in the [model_architectures.yml](conf/base/parameters/model_architectures.yml) config file and selected variant in the [model_selection.yml](conf/base/parameters/model_selection.yml). You can define your own custom pytorch model by adding its implementation to the [models.py](src/kedro_image_classification/pytorch/models.py) file.
+
+`Pytorch Lightning Trainer` and `Pytorch Optimizer` are created according to the specification in [model_training.yml](conf/base/parameters/model_training.yml) config file.
+
+After training, each new model version is saved as a custom `LightningCIFAR10` Kedro dataset ([pytorch_lightning.py](src/kedro_image_classification/extras/models/pytorch_lightning.py)) in the data catalog (more precisely in the [06_models](data/06_models)).
 
 ```shell
 kedro run --pipeline model_training
+```
+Example GPU training configuration can be found under [gpu_training.yml](conf/training_confs/gpu_training/parameters/gpu_training.yml) and run by:
+
+```shell
+# from AWS S3 bucket (require previous AWS access configuration)
+kedro run --pipeline data_download --env=training_confs/gpu_training
+```
+
+## Model evaluation
+`model_evaluation` pipeline create the `test_loader`, makes the predictions of the latest model on the test data and calculates metrics specified in the [model_evaluation.yml](conf/base/parameters/model_evaluation.yml) config file. Versioned predictions can be found under [prediction.pkl](data/07_model_output). Calculated metrics are saved in the [data/08_reporting/metrics.txt](data/08_reporting/metrics.txt).
+
+```shell
+kedro run --pipeline model_evaluation
+```
+
+If you want to run evaluation over other model than the latest one, you need to specify a particular version when running the `model_evaluation` pipeline:
+```shell
+kedro run --pipeline model_evaluation --load-versions=CIFAR10Model:YYYY-MM-DDThh.mm.ss.sssZ
 ```
