@@ -80,3 +80,15 @@ def test_calc_metrics(project_context: KedroContext):
 
     with pytest.raises(ValueError):
         calc_metrics(pred, target, metrics)
+
+    metrics2 = {"ROC": {"average": "macro"}}
+    with pytest.raises(NotImplementedError):
+        calc_metrics(pred, target, metrics2)
+
+    metrics3 = {"PrecisionRecallCurve": {"average": "macro"}}
+    with pytest.raises(NotImplementedError):
+        calc_metrics(pred, target, metrics3)
+
+    metrics4 = {"None": {"average": "macro"}}
+    with pytest.raises(ValueError):
+        calc_metrics(pred, target, metrics4)
