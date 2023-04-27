@@ -129,14 +129,14 @@ def calc_metrics(prediction: Tensor, target: Tensor, evaluation_metrics: dict) -
         ]:
             value = get_metric_value(prediction, target, metric_name, **parameters)
             results[metric_name] = value
-        if metric_name == "ConfusionMatrix":
+        elif metric_name == "ConfusionMatrix":
             value = get_confusion_matrix(prediction, target, **parameters)
             results[metric_name] = value
-        if metric_name == "ROC":
+        elif metric_name == "ROC":
             # TODO
             # https://torchmetrics.readthedocs.io/en/stable/classification/roc.html
             raise NotImplementedError()
-        if metric_name == "PrecisionRecallCurve":
+        elif metric_name == "PrecisionRecallCurve":
             # TODO
             # https://torchmetrics.readthedocs.io/en/stable/classification/precision_recall_curve.html
             raise NotImplementedError()
