@@ -24,4 +24,5 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
-          dvc pull
+          dvc pull data/01_raw/cifar-10-python.tar.gz
+          dvc pull data/06_models/cifar10_model.ckpt/trained_base/cifar10_model.ckpt
