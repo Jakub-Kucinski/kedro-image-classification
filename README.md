@@ -1,3 +1,5 @@
+[![Test Download from S3](https://github.com/Jakub-Kucinski/kedro-image-classification/actions/workflows/test-action.yml/badge.svg)](https://github.com/Jakub-Kucinski/kedro-image-classification/actions/workflows/test-action.yml)
+
 # Table of contents
 - [Table of contents](#table-of-contents)
 - [CIFAR-10](#cifar-10)
