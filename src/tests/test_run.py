@@ -14,6 +14,7 @@ from kedro.framework.context import KedroContext
 from kedro.io import DataCatalog, MemoryDataSet
 from kedro.runner import SequentialRunner
 from torch.utils.data import Subset
+from torchvision import transforms
 
 from kedro_image_classification.pipelines.data_download.nodes import dummy_download
 from kedro_image_classification.pipelines.data_processing.nodes import load_dataset
@@ -45,8 +46,14 @@ class TestModelTrainingPipeline:
 
         cifar_dataset = project_catalog.load("CIFAR10")
 
+        img_transforms = [
+            transforms.ToTensor(),
+        ]
+
         train_loader, test_loader = load_dataset(
             loaders_config=project_catalog.load("params:loaders"),
+            train_transforms=img_transforms,
+            test_transforms=img_transforms,
             cifar_dataset=(
                 Subset(cifar_dataset[0], indices=list(range(10))),
                 Subset(cifar_dataset[1], indices=list(range(10))),

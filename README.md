@@ -74,7 +74,7 @@ aws configure set aws_secret_access_key {aws_secret_access_key} --profile $LOCAL
 kedro run --pipeline data_download
 ```
 
-The default configuration uses torchvision. To run the pipeline with AWS S3 bucket as a source, you can use a predefined `aws_download` configuration:
+The default configuration uses torchvision. To run the pipeline with AWS S3 bucket as a source, you can use a predefined [aws_download.yml](conf/aws_download/catalog.yml) configuration:
 ```shell
 # from AWS S3 bucket (require previous AWS access configuration)
 kedro run --pipeline data_download --env=aws_download

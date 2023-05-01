@@ -33,8 +33,6 @@ dvc = {extras = ["s3"], version = "^2.45.1"}
 pytorch-lightning = {extras = ["tensorboardX"], version = "^1.9.4"}
 torchvision = "^0.14.1"
 fsspec = ">=2021.4,<2023.1.1"
-tensorboardx = "^2.6"
-tensorboard = "^2.12.2"
 
 [tool.poetry.group.test]
 optional = true

@@ -11,5 +11,5 @@ def test_pipeline_creation():
 
     assert type(pipeline) == Pipeline
     assert len(pipeline.nodes) > 0
-    assert len(pipeline.all_outputs()) == 2
-    assert len(pipeline.all_inputs()) == 2
+    assert len(pipeline.all_outputs()) == 4
+    assert len(pipeline.all_inputs()) == 5
