@@ -3,7 +3,7 @@ name: 'Test Download from S3'
 on: [push]
 
 jobs:
-  download-dataset:
+  test-pipelines:
     runs-on: ubuntu-latest
 
     steps:
@@ -29,9 +29,13 @@ jobs:
           dvc pull data/01_raw/cifar-10-python.tar.gz
           dvc pull data/06_models/cifar10_model.ckpt/trained_base/cifar10_model.ckpt
 
-      - name: Run Kedro pipeline
+      - name: Run Kedro data_download pipeline
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
           kedro run --pipeline data_download --env download_confs/aws_download
+
+      - name: Test with pytest
+        run: |
+          pytest
