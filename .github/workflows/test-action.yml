@@ -1,6 +1,6 @@
 name: 'Test Download from S3'
 
-on: [push]
+on: [pull_request]
 
 jobs:
   test-pipelines:
