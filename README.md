@@ -3,26 +3,42 @@
 # Table of contents
 - [Table of contents](#table-of-contents)
 - [CIFAR-10](#cifar-10)
+- [Libraries and tools](#libraries-and-tools)
 - [Installation](#installation)
-- [Dependencies update](#dependencies-update)
-- [Pre-commit installation](#pre-commit-installation)
-- [AWS access configuration](#aws-access-configuration)
+  - [Environment setup](#environment-setup)
+  - [Dependencies update](#dependencies-update)
+  - [Pre-commit installation](#pre-commit-installation)
+  - [AWS access configuration](#aws-access-configuration)
+- [Kedro visualization of pipelines](#kedro-visualization-of-pipelines)
 - [Pipelines](#pipelines)
   - [Dataset download](#dataset-download)
   - [Dataset processing](#dataset-processing)
   - [Model training](#model-training)
   - [Model evaluation](#model-evaluation)
+- [Results](#results)
 
 # CIFAR-10
 
 Team members: Jakub Kuciński, Karol Kuczmarz, Aleksander Szymański
 
-Project description: Classification of 32x32 colour images into 10 classes (airplane, automobile, bird, cat, deer, dog, frog, horse, ship, truck).
+Project description: Classification of 32x32 colour images into 10 classes.
 
 Dataset: [CIFAR-10 dataset](https://www.cs.toronto.edu/~kriz/cifar.html)
 
+![](images/cifar10.png)
+
+# Libraries and tools
+- [Kedro](https://kedro.org/) - for reproducible, maintainable and modular data science code
+- [Poetry](https://python-poetry.org/) - for dependency management
+- [PyTorch](https://pytorch.org/) - for building and training neural networks
+- [Lightning](https://www.pytorchlightning.ai/index.html) - for easier implementation of models and training
+- [AWS S3](https://aws.amazon.com/s3/) - for storing and downloading datasets
+- [DVC](https://dvc.org/) - for versioning of datasets and models
+- [pytest](https://docs.pytest.org/en/stable/) - for testing
+
 # Installation
 
+## Environment setup
 ```shell
 conda env create  --file conda.yml
 conda activate kedro_image_classification
@@ -38,13 +54,13 @@ If you want to include packages used for testing, linting and development, run t
 poetry install --with test,lint,dev
 ```
 
-# Dependencies update
+## Dependencies update
 
 ```shell
 poetry update
 ```
 
-# Pre-commit installation
+## Pre-commit installation
 
 ```shell
 pre-commit install
@@ -55,7 +71,7 @@ To check all files without committing simply run:
 pre-commit run --all-files
 ```
 
-# AWS access configuration
+## AWS access configuration
 
 ```shell
 export AWS_SHARED_CREDENTIALS_FILE="$(pwd)/conf/local/aws/credentials"
@@ -66,6 +82,8 @@ aws configure set aws_access_key_id {aws_access_key_id} --profile $LOCAL_PROFILE
 aws configure set aws_secret_access_key {aws_secret_access_key} --profile $LOCAL_PROFILE_NAME
 ```
 
+# Kedro visualization of pipelines
+![](images/kedro-pipeline.svg)
 # Pipelines
 
 ## Dataset download
@@ -117,3 +135,13 @@ If you want to run evaluation over other model than the latest one, you need to 
 ```shell
 kedro run --pipeline model_evaluation --load-versions=CIFAR10Model:YYYY-MM-DDThh.mm.ss.sssZ
 ```
+
+# Results
+- Precision: 0.5849
+- Recall: 0.5861
+- AveragePrecision: 0.6381
+- Accuracy: 0.5861
+- AUROC: 0.9173
+- ConfusionMatrix:
+
+![](images/confusion_matrix.png)
