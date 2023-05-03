@@ -24,7 +24,16 @@ Dataset: [CIFAR-10 dataset](https://www.cs.toronto.edu/~kriz/cifar.html)
 ```shell
 conda env create  --file conda.yml
 conda activate kedro_image_classification
+```
+
+For installing only the packages that are necessary for running the project, you should use the following command:
+```shell
 poetry install
+```
+
+If you want to include packages used for testing, linting and development, run the following command:
+```shell
+poetry install --with test,lint,dev
 ```
 
 # Dependencies update
@@ -65,14 +74,10 @@ aws configure set aws_secret_access_key {aws_secret_access_key} --profile $LOCAL
 kedro run --pipeline data_download
 ```
 
-Alternatively you can run one of the two predefined download configurations:
-```shell
-# from torchvision
-kedro run --pipeline data_download --env=download_confs/torchvision_download
-```
+The default configuration uses torchvision. To run the pipeline with AWS S3 bucket as a source, you can use a predefined [aws_download.yml](conf/aws_download/catalog.yml) configuration:
 ```shell
 # from AWS S3 bucket (require previous AWS access configuration)
-kedro run --pipeline data_download --env=download_confs/aws_download
+kedro run --pipeline data_download --env=aws_download
 ```
 
 ## Dataset processing
@@ -96,7 +101,6 @@ kedro run --pipeline model_training
 Example GPU training configuration can be found under [gpu_training.yml](conf/training_confs/gpu_training/parameters/gpu_training.yml) and run by:
 
 ```shell
-# from AWS S3 bucket (require previous AWS access configuration)
 kedro run --pipeline data_download --env=training_confs/gpu_training
 ```
 
