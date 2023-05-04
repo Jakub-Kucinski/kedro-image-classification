@@ -1,8 +1,8 @@
 outs:
-- md5: 8f8eb903c3dc071eaecfa9694ed1782a
-  size: 764330
+- md5: 23648dbeb17f0f9bfd3a9026cfaacff2
+  size: 1979
   path: cifar10_model_latest.ckpt
   cloud:
     cifar10-s3:
-      etag: 8f8eb903c3dc071eaecfa9694ed1782a
-      version_id: 7nBk6ML8SxzLLwLV9RjbZJnpSMeLisZK
+      etag: 23648dbeb17f0f9bfd3a9026cfaacff2
+      version_id: GujpUc0_X9VL9ajdxSpGQBk5BZIkEXFI
