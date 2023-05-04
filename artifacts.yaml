@@ -1,0 +1,3 @@
+cifar10-model:
+  path: data/06_models/cifar10_model.ckpt
+  type: model
