@@ -83,7 +83,7 @@ aws configure set aws_secret_access_key {aws_secret_access_key} --profile $LOCAL
 ```
 
 # Kedro visualization of pipelines
-![](images/kedro-pipeline.svg)
+![](images/kedro-pipeline.png)
 # Pipelines
 To run the whole workflow, you can use the following command:
 ```shell
