@@ -12,12 +12,6 @@ def create_pipeline(**kwargs) -> Pipeline:
     """
     return pipeline(
         [
-            #     node(
-            #         load_testset,
-            #         inputs=["params:loaders", "CIFAR10"],
-            #         outputs="test_loader_only",
-            #         name="load_testset",
-            #     ),
             node(
                 make_predictions,
                 inputs=["CIFAR10Model", "test_loader"],
