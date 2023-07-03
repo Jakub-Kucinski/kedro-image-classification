@@ -11,4 +11,4 @@ class TestPipeline:
 
         pipeline = create_pipeline()
         assert type(pipeline) == Pipeline
-        assert len(pipeline.nodes) == 3
+        assert len(pipeline.nodes) == 2
