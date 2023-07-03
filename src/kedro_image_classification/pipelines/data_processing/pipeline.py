@@ -30,5 +30,6 @@ def create_pipeline(**kwargs) -> Pipeline:
                 outputs=["train_loader", "test_loader"],
                 name="load_dataset",
             ),
-        ]
+        ],
+        tags=["model_evaluation", "model_training"],
     )

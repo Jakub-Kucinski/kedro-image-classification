@@ -85,6 +85,10 @@ aws configure set aws_secret_access_key {aws_secret_access_key} --profile $LOCAL
 # Kedro visualization of pipelines
 ![](images/kedro-pipeline.svg)
 # Pipelines
+To run the whole workflow, you can use the following command:
+```shell
+kedro run
+```
 
 ## Dataset download
 
@@ -116,24 +120,24 @@ kedro run --pipeline data_processing
 After training, each new model version is saved as a custom `LightningCIFAR10` Kedro dataset ([pytorch_lightning.py](src/kedro_image_classification/extras/models/pytorch_lightning.py)) in the data catalog (more precisely in the [06_models](data/06_models)).
 
 ```shell
-kedro run --pipeline model_training
+kedro run --tags model_training
 ```
 Example GPU training configuration can be found under [gpu_training.yml](conf/training_confs/gpu_training/parameters/gpu_training.yml) and run by:
 
 ```shell
-kedro run --pipeline data_download --env=training_confs/gpu_training
+kedro run --tags model_training --env=training_confs/gpu_training
 ```
 
 ## Model evaluation
 `model_evaluation` pipeline create the `test_loader`, makes the predictions of the latest model on the test data and calculates metrics specified in the [model_evaluation.yml](conf/base/parameters/model_evaluation.yml) config file. Versioned predictions can be found under [prediction.pkl](data/07_model_output). Calculated metrics are saved in the [data/08_reporting/metrics.txt](data/08_reporting/metrics.txt).
 
 ```shell
-kedro run --pipeline model_evaluation
+kedro run --tags model_evaluation
 ```
 
 If you want to run evaluation over other model than the latest one, you need to specify a particular version when running the `model_evaluation` pipeline:
 ```shell
-kedro run --pipeline model_evaluation --load-versions=CIFAR10Model:YYYY-MM-DDThh.mm.ss.sssZ
+kedro run --tags model_evaluation --load-versions=CIFAR10Model:YYYY-MM-DDThh.mm.ss.sssZ
 ```
 
 # Results
