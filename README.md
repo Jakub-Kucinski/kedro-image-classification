@@ -85,6 +85,10 @@ aws configure set aws_secret_access_key {aws_secret_access_key} --profile $LOCAL
 # Kedro visualization of pipelines
 ![](images/kedro-pipeline.svg)
 # Pipelines
+To run the whole workflow, you can use the following command:
+```shell
+kedro run
+```
 
 ## Dataset download
 
@@ -121,7 +125,7 @@ kedro run --pipeline model_training
 Example GPU training configuration can be found under [gpu_training.yml](conf/training_confs/gpu_training/parameters/gpu_training.yml) and run by:
 
 ```shell
-kedro run --pipeline data_download --env=training_confs/gpu_training
+kedro run --pipeline model_training --env=training_confs/gpu_training
 ```
 
 ## Model evaluation
