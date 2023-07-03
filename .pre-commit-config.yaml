@@ -18,6 +18,8 @@ repos:
     rev: '6.0.0'  # pick a git hash / tag to point to
     hooks:
       - id: flake8
+        name: flake8 (python)
+        args: ["--max-line-length", "88", "--extend-ignore", "E203,E501,W503"]
 
   - repo: https://github.com/psf/black
     rev: 23.3.0
