@@ -39,5 +39,6 @@ def create_pipeline(**kwargs) -> Pipeline:
                 outputs="CIFAR10Model",
                 name="train",
             ),
-        ]
+        ],
+        tags="model_training",
     )
