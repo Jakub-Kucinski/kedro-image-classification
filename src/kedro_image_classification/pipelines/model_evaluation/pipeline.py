@@ -1,6 +1,6 @@
 from kedro.pipeline import Pipeline, node, pipeline
 
-from .nodes import calc_metrics, load_testset, make_predictions
+from .nodes import calc_metrics, make_predictions
 
 
 def create_pipeline(**kwargs) -> Pipeline:
@@ -12,15 +12,15 @@ def create_pipeline(**kwargs) -> Pipeline:
     """
     return pipeline(
         [
-            node(
-                load_testset,
-                inputs=["params:loaders", "CIFAR10"],
-                outputs="test_loader_only",
-                name="load_testset",
-            ),
+            #     node(
+            #         load_testset,
+            #         inputs=["params:loaders", "CIFAR10"],
+            #         outputs="test_loader_only",
+            #         name="load_testset",
+            #     ),
             node(
                 make_predictions,
-                inputs=["CIFAR10Model", "test_loader_only"],
+                inputs=["CIFAR10Model", "test_loader"],
                 outputs=["Test_prediction", "Test_labels"],
                 name="make_predictions",
             ),
@@ -30,5 +30,6 @@ def create_pipeline(**kwargs) -> Pipeline:
                 outputs="metrics",
                 name="calc_metrics",
             ),
-        ]
+        ],
+        tags="model_evaluation",
     )
