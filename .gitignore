@@ -26,6 +26,7 @@ logs/**
 !data/01_raw/*
 
 !data/06_models/cifar10_model.ckpt/trained_base/*.dvc
+!data/06_models/**.dvc
 
 ##########################
 # Common files
